@@ -52,8 +52,8 @@ jobs:
          name: k8smanifestsArtifacts
     
       - name: Deploy Application using SSH
-          uses: cross-the-world/ssh-scp-ssh-pipelines@latest
-          env:
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+        env:
            WELCOME: "ssh scp ssh pipelines"
            LASTSSH: "Doing something after copying"
             with:
