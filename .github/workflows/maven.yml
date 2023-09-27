@@ -67,7 +67,7 @@ jobs:
           rm -rf /tmp/Docker
           mkdir -p /tmp/Docker
         scp: |
-          'k8smanifests/' => /tmp/Docker/
+          '*.yaml' => /tmp/Docker/
         last_ssh: |
           cd /tmp/Docker/
           sudo kubectl apply -f .
