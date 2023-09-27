@@ -37,6 +37,28 @@ jobs:
         push: true
         context: .
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/planview:latest 
+
+   deploy:
+  - name: Deploy Application using SSH
+      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      env:
+       WELCOME: "ssh scp ssh pipelines"
+       LASTSSH: "Doing something after copying"
+      needs: build
+      with:
+       host: '54.167.24.220'
+       user: 'alexandruionesc'
+       pass: 'ionesc0A@rupgg'
+       port: 42006
+       connect_timeout: 10s
+       first_ssh: |
+        rm -rf /tmp/Docker
+        mkdir -p /tmp/Docker
+       scp: |
+        'k8smanifests/' => /tmp/Docker/
+       last_ssh: |
+        cd /tmp/Docker/
+        sudo kubectl apply -f .
       
 
         
