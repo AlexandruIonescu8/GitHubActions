@@ -45,7 +45,7 @@ jobs:
     - name: Downloading manifests from GitHub
       uses: actions/download-artifact@v3
       with:
-      name: k8smanifestsArtifacts
+        name: k8smanifestsArtifacts
     
     - name: Deploy Application using SSH
       uses: cross-the-world/ssh-scp-ssh-pipelines@latest
