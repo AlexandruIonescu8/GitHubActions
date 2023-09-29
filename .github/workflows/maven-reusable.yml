@@ -1,0 +1,26 @@
+name: GitHub Actions Reusable Workflow
+run-name: GitHub Action Reusable Workflow
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  Basic-Maven-Workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Java version
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'temurin' 
+
+      - name: Build with Maven
+        run: mvn clean install
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: java-app
+          path: '${{ github.workspace }}/target/*'
